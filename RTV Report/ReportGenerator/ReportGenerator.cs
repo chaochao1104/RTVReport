@@ -102,10 +102,11 @@ namespace RTV_Report.Exporter
 
             WorksheetRow titleRow = worksheet.Rows[0];
             int titleCellidx = 0;
+            titleRow.Cells[titleCellidx++].Value = "RTV";
             titleRow.Cells[titleCellidx++].Value = "到HRTV仓库日期";
             titleRow.Cells[titleCellidx++].Value = "店号";
-            titleRow.Cells[titleCellidx++].Value = "批次";
-            titleRow.Cells[titleCellidx++].Value = "序号";
+//            titleRow.Cells[titleCellidx++].Value = "批次";
+//            titleRow.Cells[titleCellidx++].Value = "序号";
             titleRow.Cells[titleCellidx++].Value = "索赔号";
             titleRow.Cells[titleCellidx++].Value = "供应商号";
             titleRow.Cells[titleCellidx++].Value = "供应商名称";
@@ -125,10 +126,11 @@ namespace RTV_Report.Exporter
             {
                 WorksheetRow contentRow = worksheet.Rows[contentRowIdx++];
                 int contentCellIdx = 0;
+                contentRow.Cells[contentCellIdx++].Value = claimOrder.rtv;
                 contentRow.Cells[contentCellIdx++].Value = claimOrder.arriveRTVDate;
                 contentRow.Cells[contentCellIdx++].Value = claimOrder.storeNo;
-                contentRow.Cells[contentCellIdx++].Value = claimOrder.lotNo;
-                contentRow.Cells[contentCellIdx++].Value = 0;
+//                contentRow.Cells[contentCellIdx++].Value = claimOrder.lotNo;
+//                contentRow.Cells[contentCellIdx++].Value = 0;
                 contentRow.Cells[contentCellIdx++].Value = claimOrder.claimNo;
                 contentRow.Cells[contentCellIdx++].Value = claimOrder.supplierNo;
                 contentRow.Cells[contentCellIdx++].Value = claimOrder.supplierName;
