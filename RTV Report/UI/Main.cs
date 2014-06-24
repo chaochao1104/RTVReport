@@ -18,7 +18,7 @@ namespace RTV_Report.UI
     {
         public const string XLSX_FILTER = "All files|*.xlsx";
 
-        private readonly DateTime Deadline = new DateTime(2014, 6, 30);
+        private readonly DateTime Deadline = new DateTime(2014, 7, 30);
 
         private IList<SupplierAuthorizationDestory> _supplierAuthorizationDestories =
             new List<SupplierAuthorizationDestory>();

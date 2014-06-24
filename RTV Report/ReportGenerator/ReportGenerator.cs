@@ -17,6 +17,7 @@ namespace RTV_Report.Exporter
 
             WorksheetRow titleRow = worksheet.Rows[0];
             int titleCellidx = 0;
+            titleRow.Cells[titleCellidx++].Value = "RTV";
             titleRow.Cells[titleCellidx++].Value = "传真日期";
             titleRow.Cells[titleCellidx++].Value = "店号";
             titleRow.Cells[titleCellidx++].Value = "批次";
@@ -39,6 +40,7 @@ namespace RTV_Report.Exporter
             {
                 WorksheetRow contentRow = worksheet.Rows[contentRowIdx++];
                 int contentCellIdx = 0;
+                contentRow.Cells[contentCellIdx++].Value = claimOrder.rtv;
                 contentRow.Cells[contentCellIdx++].Value = claimOrder.informDate;
                 contentRow.Cells[contentCellIdx++].Value = claimOrder.storeNo;
                 contentRow.Cells[contentCellIdx++].Value = claimOrder.lotNo;

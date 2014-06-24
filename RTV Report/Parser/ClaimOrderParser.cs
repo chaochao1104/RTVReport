@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Infragistics.Documents.Excel;
+using RTV_Report.Domain.Model;
 using RTV_Report.Model;
 using RTV_Report.Utils;
 
@@ -22,6 +23,8 @@ namespace RTV_Report.Parser
             Worksheet worksheet = Workbook.Load(filePath).Worksheets[0];
             WorkSheetReader reader = new WorkSheetReader(worksheet);
 
+            int rowNo = 2;
+            string columnName = string.Empty;
             foreach (IDictionary<string, object> aRow in reader)
             {
                 try
@@ -30,107 +33,128 @@ namespace RTV_Report.Parser
                     ClaimOrder claimOrder = new ClaimOrder();
 
                     object value;
-                    if (null != (value = aRow[ClaimOrderTitleConstants.RTV]))
+                    columnName = ClaimOrderTitleConstants.RTV;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.rtv = value.ToString();
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.WMT_CLAIM_NO]))
+                    columnName = ClaimOrderTitleConstants.WMT_CLAIM_NO;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.claimNo = value.ToString();
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.STORE_NO]))
+                    columnName = ClaimOrderTitleConstants.STORE_NO;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.storeNo = value.ToString();
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.LOT_NO]))
+                    columnName = ClaimOrderTitleConstants.LOT_NO;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.lotNo = value.ToString();
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.SUPPLIER_NO]))
+                    columnName = ClaimOrderTitleConstants.SUPPLIER_NO;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.supplierNo = value.ToString();
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.SUPPLIER_NAME]))
+                    columnName = ClaimOrderTitleConstants.SUPPLIER_NAME;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.supplierName = value.ToString();
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.DEPT]))
+                    columnName = ClaimOrderTitleConstants.DEPT;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.dept = value.ToString();
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.QTY]))
+                    columnName = ClaimOrderTitleConstants.QTY;
+                    if (null != (value = aRow[columnName]))
                     {
                         Double.TryParse(value.ToString(), out claimOrder.qty);
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.PCS]))
+                    columnName = ClaimOrderTitleConstants.PCS;
+                    if (null != (value = aRow[columnName]))
                     {
                         Double.TryParse(value.ToString(), out claimOrder.pcs);
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.CLAIM_AMOUNT]))
+                    columnName = ClaimOrderTitleConstants.CLAIM_AMOUNT;
+                    if (null != (value = aRow[columnName]))
                     {
                         Double.TryParse(value.ToString(), out claimOrder.claimAmount);
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.CLAIM_REASON]))
+                    columnName = ClaimOrderTitleConstants.CLAIM_REASON;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.claimReason = value.ToString();
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.DECIDED_DATE]))
+                    columnName = ClaimOrderTitleConstants.DECIDED_DATE;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.decidedDate = DateTime.FromOADate((double) value);
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.ARRIVE_RTV_DATE]))
+                    columnName = ClaimOrderTitleConstants.ARRIVE_RTV_DATE;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.arriveRTVDate = DateTime.FromOADate((double) value);
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.INFORM_DATE]))
+                    columnName = ClaimOrderTitleConstants.INFORM_DATE;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.informDate = DateTime.FromOADate((double) value);
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.WITHDRAW_DATE]))
+                    columnName = ClaimOrderTitleConstants.WITHDRAW_DATE;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.withdrawDate = DateTime.FromOADate((double) value);
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.GATEOUT_DATE]))
+                    columnName = ClaimOrderTitleConstants.GATEOUT_DATE;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.gateOutDate = DateTime.FromOADate((double) value);
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.GATEOUT_TYPE]))
+                    columnName = ClaimOrderTitleConstants.GATEOUT_TYPE;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.gateOutType = value.ToString();
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.DESTORY_INFORM_DATE]))
+                    columnName = ClaimOrderTitleConstants.DESTORY_INFORM_DATE;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.destoryInformDate = DateTime.FromOADate((double) value);
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.DESTORY_TYPE]))
+                    columnName = ClaimOrderTitleConstants.DESTORY_TYPE;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.destoryType = value.ToString();
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.INFORM_DATE_IF_OVER_50_DAYS]))
+                    columnName = ClaimOrderTitleConstants.INFORM_DATE_IF_OVER_50_DAYS;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.informDateIfOver50Days = DateTime.FromOADate((double) value);
                     }
 
-                    if (null != (value = aRow[ClaimOrderTitleConstants.INFORM_DAYS]))
+                    columnName = ClaimOrderTitleConstants.INFORM_DAYS;
+                    if (null != (value = aRow[columnName]))
                     {
                         claimOrder.informDays = (double)value;
                     }
@@ -164,11 +188,39 @@ namespace RTV_Report.Parser
 //                            claimOrder.informDays = DateTime.Today.Subtract(claimOrder.informDate).Days;
 //                        }
 //                    }
+                    rowNo++;
                     claimOrders.Add(claimOrder);
+                }
+                catch (InvalidCastException)
+                {
+                    MessageBox.Show(String.Format("第{0}行，列[{1}]的格式错误！", rowNo, columnName));
+                    return new List<ClaimOrder>();          
                 }
                 catch(Exception e)
                 {
-                    MessageBox.Show(e.Message + "\n" + StringUtils.Join(",", aRow.Keys), "文件格式错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    string[] required = new string[] { 
+                        ClaimOrderTitleConstants.RTV, 
+                        ClaimOrderTitleConstants.WMT_CLAIM_NO,
+                        ClaimOrderTitleConstants.STORE_NO,
+                        ClaimOrderTitleConstants.LOT_NO,
+                        ClaimOrderTitleConstants.SUPPLIER_NO,
+                        ClaimOrderTitleConstants.SUPPLIER_NAME,
+                        ClaimOrderTitleConstants.QTY,
+                        ClaimOrderTitleConstants.PCS,
+                        ClaimOrderTitleConstants.CLAIM_AMOUNT,
+                        ClaimOrderTitleConstants.CLAIM_REASON,
+                        ClaimOrderTitleConstants.DECIDED_DATE,
+                        ClaimOrderTitleConstants.ARRIVE_RTV_DATE,
+                        ClaimOrderTitleConstants.INFORM_DATE,
+                        ClaimOrderTitleConstants.WITHDRAW_DATE,
+                        ClaimOrderTitleConstants.GATEOUT_DATE,
+                        ClaimOrderTitleConstants.GATEOUT_TYPE,
+                        ClaimOrderTitleConstants.DESTORY_INFORM_DATE,
+                        ClaimOrderTitleConstants.DESTORY_TYPE,
+                        ClaimOrderTitleConstants.INFORM_DATE_IF_OVER_50_DAYS,
+                        ClaimOrderTitleConstants.INFORM_DAYS
+                    };
+                    MessageBox.Show(e.Message + "\n需要：\n" + StringUtils.Join(", ", required) + "\n\n\n实际：\n" + StringUtils.Join(", ", aRow.Keys), "文件格式错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return new List<ClaimOrder>();
                 }
             }

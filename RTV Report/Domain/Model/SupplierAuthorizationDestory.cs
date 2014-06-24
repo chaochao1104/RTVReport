@@ -10,6 +10,10 @@ namespace RTV_Report.Domain.Model
 
         public string supplierNo;
 
-        public DateTime destoryInformDate;
+        public double claimAmount;
+
+        public DateTime decidedDate;
+
+        //public DateTime destoryInformDate;
     }
 }

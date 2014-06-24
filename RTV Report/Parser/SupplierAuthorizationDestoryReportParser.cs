@@ -23,32 +23,54 @@ namespace RTV_Report.Parser
             Worksheet worksheet = Workbook.Load(filePath).Worksheets[0];
             WorkSheetReader reader = new WorkSheetReader(worksheet);
 
+            string columnName = string.Empty;
+            int rowNo = 2;
             foreach (IDictionary<string, object> aRow in reader)
             {
                 SupplierAuthorizationDestory supplierAuthorizationDestory = new SupplierAuthorizationDestory();
                 try
                 {
                     object value;
-                    if (null != (value = aRow["索赔号"]))
+                    columnName = "索赔号";
+                    if (null != (value = aRow[columnName]))
                     {
                         supplierAuthorizationDestory.claimNo = value.ToString();
                     }
 
-                    if (null != (value = aRow["供应商号"]))
+                    columnName = "供应商号";
+                    if (null != (value = aRow[columnName]))
                     {
                         supplierAuthorizationDestory.supplierNo = value.ToString();
                     }
 
-                    if (null != (value = aRow["通知时间"]))
+//                    if (null != (value = aRow["通知时间"]))
+//                    {
+//                        supplierAuthorizationDestory.destoryInformDate = DateTime.FromOADate((double)value);
+//                    }
+
+                    columnName = "定案日期";
+                    if (null != (value = aRow[columnName]))
                     {
-                        supplierAuthorizationDestory.destoryInformDate = DateTime.FromOADate((double)value);
+                        supplierAuthorizationDestory.decidedDate = DateTime.FromOADate((double)value);
                     }
 
+                    columnName = "金额";
+                    if (null != (value = aRow[columnName]))
+                    {
+                        Double.TryParse(value.ToString(), out supplierAuthorizationDestory.claimAmount);
+                    }
+
+                    rowNo++;
                     supplierAuthorizationDestories.Add(supplierAuthorizationDestory);
+                }
+                catch(InvalidCastException e)
+                {
+                    MessageBox.Show(String.Format("第{0}行，列[{1}]的格式错误！", rowNo, columnName));
+                    return new List<SupplierAuthorizationDestory>();
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message + "\n" + StringUtils.Join(",", aRow.Keys), "文件格式错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(e.Message + "\n需要：\n'索赔号', '供应商号', '通知时间', '定案日期', '金额'。 " + "\n\n\n实际为：\n" + StringUtils.Join(", ", aRow.Keys), "文件格式错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return new List<SupplierAuthorizationDestory>();
                 }
                 

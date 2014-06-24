@@ -28,7 +28,10 @@ namespace RTV_Report.Validator
             {
                 for (int i = 0; i < _claimOrders.Count; i++)
                 {
-                    if (supplierAuthorizationDestory.claimNo == _claimOrders[i].claimNo && supplierAuthorizationDestory.supplierNo == _claimOrders[i].supplierNo)
+                    if (supplierAuthorizationDestory.claimNo == _claimOrders[i].claimNo && 
+                        supplierAuthorizationDestory.supplierNo == _claimOrders[i].supplierNo && 
+                        supplierAuthorizationDestory.decidedDate.Equals(_claimOrders[i].decidedDate) && 
+                        supplierAuthorizationDestory.claimAmount.Equals(_claimOrders[i].claimAmount))
                     {
                         if (DateTimeUtils.IsEmpty(_claimOrders[i].destoryInformDate))
                         {
